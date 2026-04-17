@@ -3,7 +3,6 @@ using namespace std;
 
 #define N 9
 
-// Print grid
 void printGrid(int grid[N][N]) {
     cout << "\nSudoku Board:\n";
     for (int i = 0; i < N; i++) {
@@ -14,7 +13,7 @@ void printGrid(int grid[N][N]) {
     }
 }
 
-// Check safe move
+
 bool isSafe(int grid[N][N], int row, int col, int num) {
     for (int i = 0; i < N; i++)
         if (grid[row][i] == num || grid[i][col] == num)
@@ -31,7 +30,6 @@ bool isSafe(int grid[N][N], int row, int col, int num) {
     return true;
 }
 
-// Check complete Sudoku
 bool isComplete(int grid[N][N]) {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
@@ -51,7 +49,7 @@ bool isComplete(int grid[N][N]) {
 
 int main() {
 
-    // 🔹 Predefined Puzzle
+   
     int grid[N][N] = {
         {5, 3, 0, 0, 7, 0, 0, 0, 0},
         {6, 0, 0, 1, 9, 5, 0, 0, 0},
@@ -66,7 +64,6 @@ int main() {
 
     int original[N][N];
 
-    // Save original (so user can't change fixed values)
     for (int i = 0; i < N; i++)
         for (int j = 0; j < N; j++)
             original[i][j] = grid[i][j];
@@ -83,26 +80,25 @@ int main() {
 
         cin >> col >> num;
 
-        // Prevent changing fixed cells
         if (original[row][col] != 0) {
-            cout << "❌ Cannot change predefined values!\n";
+            cout << " Cannot change predefined values!\n";
             continue;
         }
 
         if (num < 1 || num > 9) {
-            cout << "❌ Enter number between 1-9!\n";
+            cout << " Enter number between 1-9!\n";
             continue;
         }
 
         if (isSafe(grid, row, col, num)) {
             grid[row][col] = num;
-            cout << "✅ Correct move!\n";
+            cout << " Correct move!\n";
         } else {
-            cout << "❌ Wrong move!\n";
+            cout << " Wrong move!\n";
         }
 
         if (isComplete(grid)) {
-            cout << "\n🎉 Congratulations! You solved the Sudoku!\n";
+            cout << "\n Congratulations! You solved the Sudoku!\n";
             printGrid(grid);
             break;
         }
